@@ -21,7 +21,7 @@ function checkPassword1() {
         document.getElementById('password-page-1').style.display = 'none';
         document.getElementById('password-page-2').style.display = 'flex';
     } else {
-        error.textContent = '❌ 密码错误，请重新输入';
+        error.textContent = '❌ 错误！你好狠的心，这都能记错！';
         setTimeout(function() {
             error.textContent = '';
         }, 2000);
@@ -173,19 +173,14 @@ const catSurprises = [
     '🐱 送你一颗猫薄荷！🌿',
     '🐱 喵呜~喜欢你！',
     '🐱 尾巴甩甩~开心！',
-    '🐱 给你舔舔毛~'
+    '🐱 给你舔舔毛~',
+    '🐱 坏狗同学，生日快乐！',
+    '🐱 永远是你的坏猫老师~',
+    '🐱 今天也要开心哦！',
+    '🐱 喵~最最最喜欢你！'
 ];
 
-const dogSurprises = [
-    '🐶 汪汪！生日快乐！',
-    '🐶 摇尾巴~超级开心！',
-    '🐶 给你叼来一根骨头！🍖',
-    '🐶 扑进怀里！❤️',
-    '🐶 汪汪汪！爱你！',
-    '🐶 带你去遛弯！🚶'
-];
-
-function triggerSurprise(type) {
+function triggerSurprise() {
     if (collectedCakes.length < totalCakes) {
         const resultDiv = document.getElementById('surprise-result');
         resultDiv.innerHTML = '🔒 请先集齐5个小蛋糕！';
@@ -194,8 +189,7 @@ function triggerSurprise(type) {
     }
     
     const resultDiv = document.getElementById('surprise-result');
-    const surprises = type === 'cat' ? catSurprises : dogSurprises;
-    const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
+    const randomSurprise = catSurprises[Math.floor(Math.random() * catSurprises.length)];
     
     resultDiv.innerHTML = '';
     resultDiv.style.opacity = '0';
@@ -205,7 +199,7 @@ function triggerSurprise(type) {
         resultDiv.style.opacity = '1';
     }, 100);
     
-    createParticles(type);
+    createParticles('cat');
 }
 
 function createParticles(type) {

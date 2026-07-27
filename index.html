@@ -145,6 +145,24 @@
                         <p>[回忆描述4]</p>
                     </div>
                 </div>
+                <div class="memory-card" onclick="showMemoryDetail(4)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">💜</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题5]</h3>
+                        <p>[回忆描述5]</p>
+                    </div>
+                </div>
+                <div class="memory-card" onclick="showMemoryDetail(5)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">🌟</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题6]</h3>
+                        <p>[回忆描述6]</p>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="hidden-cake" id="cake-3" onclick="collectCake(3)">🍰</div>
@@ -184,14 +202,10 @@
                             您的浏览器不支持音频播放
                         
                     </div>
-                    <div class="paw-buttons">
-                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
-                        <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
-                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
-                        <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
-                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                    <div class="big-paw-container">
+                        <button class="big-paw-btn" onclick="triggerSurprise()">�</button>
                     </div>
-                    <p class="surprise-hint">点击爪子看看会发生什么！</p>
+                    <p class="surprise-hint">点击大猫爪，听听猫猫想说什么！</p>
                     <div id="surprise-result"></div>
                 </div>
             </div>

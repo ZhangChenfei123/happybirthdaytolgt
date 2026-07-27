@@ -164,6 +164,11 @@ body {
     50% { transform: translateY(-15px); }
 }
 
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
 .hero-title {
     font-family: 'Ma Shan Zheng', cursive;
     font-size: 4rem;
@@ -432,7 +437,7 @@ body {
     width: 80px;
     height: 80px;
     object-fit: contain;
-    animation: float 3s ease-in-out infinite;
+    animation: pulse 3s ease-in-out infinite;
 }
 
 .envelope-inner {
@@ -885,6 +890,32 @@ body {
 .surprise-audio audio {
     width: 100%;
     border-radius: 10px;
+}
+
+.big-paw-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.big-paw-btn {
+    font-size: 4rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #FCD34D, #F59E0B);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.4);
+}
+
+.big-paw-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(251, 191, 36, 0.6);
+}
+
+.big-paw-btn:active {
+    transform: scale(0.95);
 }
 
 @media (max-width: 768px) {
