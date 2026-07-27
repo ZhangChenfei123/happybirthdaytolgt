@@ -198,6 +198,16 @@ body {
     transform: scale(1.05);
 }
 
+.bgm-player {
+    margin-top: 2rem;
+}
+
+.bgm-player audio {
+    width: 280px;
+    border-radius: 30px;
+    background: rgba(139, 115, 85, 0.1);
+}
+
 .floating-elements {
     position: absolute;
     width: 100%;
