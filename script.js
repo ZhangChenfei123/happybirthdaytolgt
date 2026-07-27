@@ -1,5 +1,6 @@
 let collectedCakes = [];
 const totalCakes = 5;
+let isBGMPlaying = false;
 
 window.addEventListener('load', function() {
     setTimeout(function() {
@@ -9,6 +10,24 @@ window.addEventListener('load', function() {
         }, 500);
     }, 2000);
 });
+
+function toggleBGM() {
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('bgm-toggle');
+    
+    if (isBGMPlaying) {
+        bgm.pause();
+        btn.textContent = '🎵 背景音乐：关';
+        btn.classList.remove('playing');
+    } else {
+        bgm.play().catch(function() {
+            btn.textContent = '🎵 点击播放音乐';
+        });
+        btn.textContent = '🎵 背景音乐：开';
+        btn.classList.add('playing');
+    }
+    isBGMPlaying = !isBGMPlaying;
+}
 
 function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
