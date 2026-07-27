@@ -16,11 +16,31 @@
         </div>
     </div>
 
-    <nav class="navbar">
+    <div id="password-page-1" class="password-page">
+        <div class="password-content">
+            <h2 class="password-title">🔐 请输入密码</h2>
+            <p class="password-hint">我们是哪一天加上微信好友的？</p>
+            <input type="text" id="password-input-1" class="password-input" placeholder="格式：YYYYMMDD">
+            <button class="password-btn" onclick="checkPassword1()">确认</button>
+            <p id="password-error-1" class="password-error"></p>
+        </div>
+    </div>
+
+    <div id="password-page-2" class="password-page" style="display: none;">
+        <div class="password-content">
+            <h2 class="password-title">🔍 回忆测试</h2>
+            <p class="password-hint">还记得我们在neulink上相遇是哪一天吗？</p>
+            <input type="text" id="password-input-2" class="password-input" placeholder="输入任意答案">
+            <button class="password-btn" onclick="checkPassword2()">确认</button>
+            <p id="password-success-2" class="password-success"></p>
+        </div>
+    </div>
+
+    <nav class="navbar" style="display: none;">
         <div class="nav-logo">🐱 🐶</div>
         <ul class="nav-links">
             <li><a href="#hero">首页</a></li>
-            <li><a href="#message">祝福留言</a></li>
+            <li><a href="#message">一路走来</a></li>
             <li><a href="#memories">回忆相册</a></li>
             <li><a href="#letter">一封信</a></li>
             <li><a href="#surprise">彩蛋惊喜</a></li>
@@ -32,6 +52,7 @@
     </nav>
 
     <section id="hero" class="hero-section">
+        <div class="petals-container" id="petals-container"></div>
         <div class="hero-content">
             <div class="avatar-container">
                 <div class="avatar cat-avatar">🐱</div>
@@ -59,31 +80,22 @@
 
     <section id="message" class="message-section">
         <div class="container">
-            <h2 class="section-title">📝 坏猫老师的祝福</h2>
-            <div class="message-card">
-                <div class="card-header">
-                    <span class="sender">🐱 坏猫老师</span>
-                    <span class="receiver">→ 🐶 坏狗同学（刘冠廷）</span>
+            <h2 class="section-title">� 一路走来</h2>
+            <div class="milestone-grid">
+                <div class="milestone-card">
+                    <div class="milestone-icon">�</div>
+                    <div class="milestone-number" id="days-count">[认识天数]</div>
+                    <div class="milestone-label">认识的天数</div>
                 </div>
-                <div class="card-content">
-                    <p class="message-text">[此处将放置坏猫老师给坏狗同学的生日祝福文字]</p>
+                <div class="milestone-card">
+                    <div class="milestone-icon">💬</div>
+                    <div class="milestone-number" id="messages-count">[消息数量]</div>
+                    <div class="milestone-label">发消息的数量</div>
                 </div>
-                <div class="card-footer">
-                    <span class="heart">❤️</span>
-                    <span class="date">2026年7月27日</span>
-                </div>
-            </div>
-            <div class="message-card reversed">
-                <div class="card-header">
-                    <span class="sender">🐶 坏狗同学</span>
-                    <span class="receiver">→ 🐱 坏猫老师</span>
-                </div>
-                <div class="card-content">
-                    <p class="message-text">[此处将放置坏狗同学的回信]</p>
-                </div>
-                <div class="card-footer">
-                    <span class="heart">🐾</span>
-                    <span class="date">2026年7月27日</span>
+                <div class="milestone-card">
+                    <div class="milestone-icon">👥</div>
+                    <div class="milestone-number" id="meetings-count">[见面次数]</div>
+                    <div class="milestone-label">见面次数</div>
                 </div>
             </div>
         </div>
@@ -164,6 +176,12 @@
                     <p>快去其他页面找找隐藏的小蛋糕吧！</p>
                 </div>
                 <div id="surprise-unlocked" class="surprise-unlocked" style="display: none;">
+                    <div class="surprise-audio">
+                        <audio controls id="surprise-audio">
+                            <source src="[彩蛋音频文件路径]" type="audio/mpeg">
+                            您的浏览器不支持音频播放
+                        
+                    </div>
                     <div class="paw-buttons">
                         <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
                         <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>

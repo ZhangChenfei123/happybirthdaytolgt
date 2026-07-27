@@ -710,6 +710,170 @@ body {
     line-height: 1.6;
 }
 
+.password-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.password-content {
+    text-align: center;
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    max-width: 400px;
+    width: 90%;
+}
+
+.password-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #8B5CF6;
+}
+
+.password-hint {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.password-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.5rem;
+    text-align: center;
+    border: 2px solid #E5E7EB;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+.password-input:focus {
+    outline: none;
+    border-color: #8B5CF6;
+}
+
+.password-btn {
+    padding: 1rem 3rem;
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #8B5CF6, #A78BFA);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    transition: transform 0.3s ease;
+}
+
+.password-btn:hover {
+    transform: scale(1.05);
+}
+
+.password-error {
+    color: #EF4444;
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.password-success {
+    color: #10B981;
+    margin-top: 1rem;
+    font-size: 1rem;
+    animation: successPulse 0.5s ease;
+}
+
+@keyframes successPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.petals-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.petal {
+    position: absolute;
+    width: 15px;
+    height: 20px;
+    background: linear-gradient(135deg, #C4B5FD, #A78BFA);
+    border-radius: 50% 0 50% 50%;
+    opacity: 0.7;
+    animation: petalFall linear infinite;
+}
+
+@keyframes petalFall {
+    0% {
+        transform: translateY(-10vh) rotate(0deg);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.milestone-grid {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.milestone-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+}
+
+.milestone-card:hover {
+    transform: translateY(-5px);
+}
+
+.milestone-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.milestone-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #8B5CF6;
+    margin-bottom: 0.5rem;
+}
+
+.milestone-label {
+    font-size: 1rem;
+    color: #666;
+}
+
+.surprise-audio {
+    margin-bottom: 2rem;
+}
+
+.surprise-audio audio {
+    width: 100%;
+    border-radius: 10px;
+}
+
 @media (max-width: 768px) {
     .nav-links {
         gap: 1rem;
@@ -736,5 +900,18 @@ body {
         width: 60px;
         height: 60px;
         font-size: 1.5rem;
+    }
+    
+    .milestone-grid {
+        gap: 1rem;
+    }
+    
+    .milestone-card {
+        min-width: 150px;
+        padding: 1.5rem;
+    }
+    
+    .milestone-number {
+        font-size: 2rem;
     }
 }

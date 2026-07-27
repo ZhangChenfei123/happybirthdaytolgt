@@ -7,9 +7,54 @@ window.addEventListener('load', function() {
         document.getElementById('loading-screen').style.opacity = '0';
         setTimeout(function() {
             document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('password-page-1').style.display = 'flex';
         }, 500);
     }, 2000);
+    createPetals();
 });
+
+function checkPassword1() {
+    const input = document.getElementById('password-input-1').value;
+    const error = document.getElementById('password-error-1');
+    
+    if (input === '20260517') {
+        document.getElementById('password-page-1').style.display = 'none';
+        document.getElementById('password-page-2').style.display = 'flex';
+    } else {
+        error.textContent = '❌ 密码错误，请重新输入';
+        setTimeout(function() {
+            error.textContent = '';
+        }, 2000);
+    }
+}
+
+function checkPassword2() {
+    const input = document.getElementById('password-input-2').value;
+    const success = document.getElementById('password-success-2');
+    
+    if (input.length > 0) {
+        success.textContent = '正确！（嘿嘿，其实我也忘了是哪一天，你过生日什么都听你哒，不管你输入什么都正确哦）';
+        setTimeout(function() {
+            document.getElementById('password-page-2').style.display = 'none';
+        }, 2000);
+    }
+}
+
+function createPetals() {
+    const container = document.getElementById('petals-container');
+    if (!container) return;
+    
+    for (let i = 0; i < 20; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        petal.style.animationDelay = Math.random() * 5 + 's';
+        petal.style.width = (Math.random() * 10 + 10) + 'px';
+        petal.style.height = (Math.random() * 15 + 15) + 'px';
+        container.appendChild(petal);
+    }
+}
 
 function toggleBGM() {
     const bgm = document.getElementById('bgm');
