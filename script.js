@@ -21,7 +21,7 @@ function checkPassword1() {
         document.getElementById('password-page-1').style.display = 'none';
         document.getElementById('password-page-2').style.display = 'flex';
     } else {
-        error.textContent = '❌ 错误！你好狠的心，这都能记错！';
+        error.textContent = '❌ 错误！这都不记得了，你好狠的心呜呜呜！';
         setTimeout(function() {
             error.textContent = '';
         }, 2000);
