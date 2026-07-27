@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>坏猫老师给坏狗同学的生日祝福</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="cat-paw"></div>
+            <div class="dog-paw"></div>
+            <h2>加载中...</h2>
+        </div>
+    </div>
+
+    <nav class="navbar">
+        <div class="nav-logo">🐱 🐶</div>
+        <ul class="nav-links">
+            <li><a href="#hero">首页</a></li>
+            <li><a href="#message">祝福留言</a></li>
+            <li><a href="#memories">回忆相册</a></li>
+            <li><a href="#audio">语音祝福</a></li>
+            <li><a href="#surprise">彩蛋惊喜</a></li>
+        </ul>
+    </nav>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <div class="avatar-container">
+                <div class="avatar cat-avatar">🐱</div>
+                <div class="avatar dog-avatar">🐶</div>
+            </div>
+            <h1 class="hero-title">生日快乐，坏狗同学！</h1>
+            <p class="hero-subtitle">来自坏猫老师的专属祝福</p>
+            <div class="birthday-date">🎂 2026年7月27日</div>
+            <button class="scroll-btn" onclick="scrollToSection('message')">开始探索 →</button>
+        </div>
+        <div class="floating-elements">
+            <div class="float-item">🎁</div>
+            <div class="float-item">🎉</div>
+            <div class="float-item">🎈</div>
+            <div class="float-item">🎊</div>
+            <div class="float-item">🍰</div>
+        </div>
+    </section>
+
+    <section id="message" class="message-section">
+        <div class="container">
+            <h2 class="section-title">📝 坏猫老师的祝福</h2>
+            <div class="message-card">
+                <div class="card-header">
+                    <span class="sender">🐱 坏猫老师</span>
+                    <span class="receiver">→ 🐶 坏狗同学（刘冠廷）</span>
+                </div>
+                <div class="card-content">
+                    <p class="message-text">[此处将放置坏猫老师给坏狗同学的生日祝福文字]</p>
+                </div>
+                <div class="card-footer">
+                    <span class="heart">❤️</span>
+                    <span class="date">2026年7月27日</span>
+                </div>
+            </div>
+            <div class="message-card reversed">
+                <div class="card-header">
+                    <span class="sender">🐶 坏狗同学</span>
+                    <span class="receiver">→ 🐱 坏猫老师</span>
+                </div>
+                <div class="card-content">
+                    <p class="message-text">[此处将放置坏狗同学的回信]</p>
+                </div>
+                <div class="card-footer">
+                    <span class="heart">🐾</span>
+                    <span class="date">2026年7月27日</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="memories" class="memories-section">
+        <div class="container">
+            <h2 class="section-title">📸 美好回忆</h2>
+            <div class="memories-grid">
+                <div class="memory-card" onclick="showMemoryDetail(0)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">🐱</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题1]</h3>
+                        <p>[回忆描述1]</p>
+                    </div>
+                </div>
+                <div class="memory-card" onclick="showMemoryDetail(1)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">🐶</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题2]</h3>
+                        <p>[回忆描述2]</p>
+                    </div>
+                </div>
+                <div class="memory-card" onclick="showMemoryDetail(2)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">🎂</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题3]</h3>
+                        <p>[回忆描述3]</p>
+                    </div>
+                </div>
+                <div class="memory-card" onclick="showMemoryDetail(3)">
+                    <div class="memory-image">
+                        <span class="placeholder-icon">🎈</span>
+                    </div>
+                    <div class="memory-info">
+                        <h3>[回忆标题4]</h3>
+                        <p>[回忆描述4]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="audio" class="audio-section">
+        <div class="container">
+            <h2 class="section-title">🎵 语音祝福</h2>
+            <div class="audio-container">
+                <div class="audio-card">
+                    <div class="audio-icon">🎧</div>
+                    <h3>坏猫老师的语音祝福</h3>
+                    <audio controls>
+                        <source src="[音频文件路径]" type="audio/mpeg">
+                        您的浏览器不支持音频播放
+                    </audio>
+                    <p class="audio-desc">[音频描述文字]</p>
+                </div>
+                <div class="audio-card">
+                    <div class="audio-icon">🎤</div>
+                    <h3>背景音乐</h3>
+                    <audio controls loop>
+                        <source src="[背景音乐路径]" type="audio/mpeg">
+                        您的浏览器不支持音频播放
+                    </audio>
+                    <p class="audio-desc">[背景音乐描述]</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="surprise" class="surprise-section">
+        <div class="container">
+            <h2 class="section-title">🎁 彩蛋惊喜</h2>
+            <div class="surprise-container">
+                <div class="paw-buttons">
+                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                    <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
+                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                    <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
+                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                </div>
+                <p class="surprise-hint">点击爪子看看会发生什么！</p>
+                <div id="surprise-result"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>🐱 坏猫老师 ❤️ 🐶 坏狗同学</p>
+                <p>© 2026 生日快乐</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="memory-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <div id="modal-image">
+                <span class="placeholder-icon">📷</span>
+            </div>
+            <h3 id="modal-title">[回忆标题]</h3>
+            <p id="modal-description">[详细描述]</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
