@@ -404,7 +404,7 @@ body {
     border-left: 175px solid transparent;
     border-right: 175px solid transparent;
     border-top: 140px solid #DEB887;
-    z-index: 3;
+    z-index: 2;
     transition: transform 0.5s ease;
 }
 
@@ -416,12 +416,12 @@ body {
     height: 100%;
     background: linear-gradient(135deg, #F5DEB3, #DEB887);
     border-radius: 0 0 10px 10px;
-    z-index: 2;
+    z-index: 1;
 }
 
 .envelope-seal {
     position: absolute;
-    top: -40px;
+    top: 125px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -429,8 +429,8 @@ body {
 }
 
 .wisteria-image {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: contain;
     animation: float 3s ease-in-out infinite;
 }
@@ -446,7 +446,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+    z-index: 0;
 }
 
 .letter-preview {
