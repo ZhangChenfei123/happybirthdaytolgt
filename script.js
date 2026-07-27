@@ -75,6 +75,21 @@ window.addEventListener('click', function(event) {
     }
 });
 
+function openLetter() {
+    document.getElementById('letter-modal').style.display = 'flex';
+}
+
+function closeLetter() {
+    document.getElementById('letter-modal').style.display = 'none';
+}
+
+window.addEventListener('click', function(event) {
+    const letterModal = document.getElementById('letter-modal');
+    if (event.target === letterModal) {
+        closeLetter();
+    }
+});
+
 function collectCake(cakeId) {
     if (collectedCakes.includes(cakeId)) return;
     
