@@ -25,6 +25,10 @@
             <li><a href="#audio">语音祝福</a></li>
             <li><a href="#surprise">彩蛋惊喜</a></li>
         </ul>
+        <div class="backpack" id="backpack">
+            <span class="backpack-icon">🎒</span>
+            <span class="cake-count">0/5</span>
+        </div>
     </nav>
 
     <section id="hero" class="hero-section">
@@ -45,6 +49,7 @@
             <div class="float-item">🎊</div>
             <div class="float-item">🍰</div>
         </div>
+        <div class="hidden-cake" id="cake-1" onclick="collectCake(1)">🍰</div>
     </section>
 
     <section id="message" class="message-section">
@@ -77,6 +82,7 @@
                 </div>
             </div>
         </div>
+        <div class="hidden-cake" id="cake-2" onclick="collectCake(2)">🍰</div>
     </section>
 
     <section id="memories" class="memories-section">
@@ -121,6 +127,7 @@
                 </div>
             </div>
         </div>
+        <div class="hidden-cake" id="cake-3" onclick="collectCake(3)">🍰</div>
     </section>
 
     <section id="audio" class="audio-section">
@@ -133,37 +140,45 @@
                     <audio controls>
                         <source src="[音频文件路径]" type="audio/mpeg">
                         您的浏览器不支持音频播放
-                    </audio>
+                    
                     <p class="audio-desc">[音频描述文字]</p>
                 </div>
                 <div class="audio-card">
                     <div class="audio-icon">🎤</div>
-                    <h3>背景音乐</h3>
-                    <audio controls loop>
-                        <source src="[背景音乐路径]" type="audio/mpeg">
+                    <h3>背景音乐 - Enchanted</h3>
+                    <audio controls loop id="bgm">
+                        <source src="https://cdn.pixabay.com/audio/2022/05/27/audio_95514a901a.mp3" type="audio/mpeg">
                         您的浏览器不支持音频播放
-                    </audio>
-                    <p class="audio-desc">[背景音乐描述]</p>
+                    
+                    <p class="audio-desc">Taylor Swift - Enchanted</p>
                 </div>
             </div>
         </div>
+        <div class="hidden-cake" id="cake-4" onclick="collectCake(4)">🍰</div>
     </section>
 
     <section id="surprise" class="surprise-section">
         <div class="container">
             <h2 class="section-title">🎁 彩蛋惊喜</h2>
             <div class="surprise-container">
-                <div class="paw-buttons">
-                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
-                    <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
-                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
-                    <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
-                    <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                <div id="surprise-locked" class="surprise-locked">
+                    <p>🔒 彩蛋需要集齐5个小蛋糕才能开启！</p>
+                    <p>快去其他页面找找隐藏的小蛋糕吧！</p>
                 </div>
-                <p class="surprise-hint">点击爪子看看会发生什么！</p>
-                <div id="surprise-result"></div>
+                <div id="surprise-unlocked" class="surprise-unlocked" style="display: none;">
+                    <div class="paw-buttons">
+                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                        <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
+                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                        <button class="paw-btn dog-paw-btn" onclick="triggerSurprise('dog')">🐾</button>
+                        <button class="paw-btn cat-paw-btn" onclick="triggerSurprise('cat')">🐾</button>
+                    </div>
+                    <p class="surprise-hint">点击爪子看看会发生什么！</p>
+                    <div id="surprise-result"></div>
+                </div>
             </div>
         </div>
+        <div class="hidden-cake" id="cake-5" onclick="collectCake(5)">🍰</div>
     </section>
 
     <footer class="footer">

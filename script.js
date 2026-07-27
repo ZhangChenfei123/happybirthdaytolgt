@@ -1,3 +1,6 @@
+let collectedCakes = [];
+const totalCakes = 5;
+
 window.addEventListener('load', function() {
     setTimeout(function() {
         document.getElementById('loading-screen').style.opacity = '0';
@@ -53,6 +56,35 @@ window.addEventListener('click', function(event) {
     }
 });
 
+function collectCake(cakeId) {
+    if (collectedCakes.includes(cakeId)) return;
+    
+    collectedCakes.push(cakeId);
+    const cakeElement = document.getElementById('cake-' + cakeId);
+    cakeElement.classList.add('collected');
+    
+    updateBackpack();
+    checkSurpriseStatus();
+}
+
+function updateBackpack() {
+    const cakeCount = document.querySelector('.cake-count');
+    cakeCount.textContent = collectedCakes.length + '/' + totalCakes;
+    
+    const backpack = document.getElementById('backpack');
+    backpack.style.transform = 'scale(1.2)';
+    setTimeout(function() {
+        backpack.style.transform = 'scale(1)';
+    }, 300);
+}
+
+function checkSurpriseStatus() {
+    if (collectedCakes.length === totalCakes) {
+        document.getElementById('surprise-locked').style.display = 'none';
+        document.getElementById('surprise-unlocked').style.display = 'block';
+    }
+}
+
 const catSurprises = [
     '🐱 喵~坏猫老师来蹭蹭你！',
     '🐱 咕噜咕噜~生日快乐！',
@@ -72,6 +104,13 @@ const dogSurprises = [
 ];
 
 function triggerSurprise(type) {
+    if (collectedCakes.length < totalCakes) {
+        const resultDiv = document.getElementById('surprise-result');
+        resultDiv.innerHTML = '🔒 请先集齐5个小蛋糕！';
+        resultDiv.style.opacity = '1';
+        return;
+    }
+    
     const resultDiv = document.getElementById('surprise-result');
     const surprises = type === 'cat' ? catSurprises : dogSurprises;
     const randomSurprise = surprises[Math.floor(Math.random() * surprises.length)];
