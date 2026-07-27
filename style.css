@@ -421,19 +421,17 @@ body {
 
 .envelope-seal {
     position: absolute;
-    top: 100px;
+    top: -40px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    z-index: 5;
 }
 
 .wisteria-image {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #FFF;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
     animation: float 3s ease-in-out infinite;
 }
 
