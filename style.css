@@ -421,11 +421,11 @@ body {
 
 .envelope-seal {
     position: absolute;
-    top: 125px;
+    top: 120px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
-    z-index: 5;
+    z-index: 10;
 }
 
 .wisteria-image {
@@ -783,11 +783,24 @@ body {
     font-size: 1rem;
 }
 
-.password-success {
-    color: #10B981;
-    margin-top: 1rem;
-    font-size: 1rem;
+.password-success-area {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 10px;
+    border: 2px solid #10B981;
     animation: successPulse 0.5s ease;
+}
+
+.password-success-text {
+    color: #10B981;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.enter-btn {
+    background: linear-gradient(135deg, #10B981, #059669);
 }
 
 @keyframes successPulse {

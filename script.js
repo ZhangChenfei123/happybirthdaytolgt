@@ -30,14 +30,17 @@ function checkPassword1() {
 
 function checkPassword2() {
     const input = document.getElementById('password-input-2').value;
-    const success = document.getElementById('password-success-2');
+    const successArea = document.getElementById('password-success-area-2');
     
     if (input.length > 0) {
-        success.textContent = '正确！（嘿嘿，其实我也忘了是哪一天，你过生日什么都听你哒，不管你输入什么都正确哦）';
-        setTimeout(function() {
-            document.getElementById('password-page-2').style.display = 'none';
-        }, 2000);
+        document.getElementById('password-input-2').style.display = 'none';
+        document.querySelector('#password-page-2 .password-btn').style.display = 'none';
+        successArea.style.display = 'block';
     }
+}
+
+function enterWebsite() {
+    document.getElementById('password-page-2').style.display = 'none';
 }
 
 function createPetals() {

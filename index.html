@@ -30,9 +30,12 @@
         <div class="password-content">
             <h2 class="password-title">🔍 回忆测试</h2>
             <p class="password-hint">还记得我们在neulink上相遇是哪一天吗？</p>
-            <input type="text" id="password-input-2" class="password-input" placeholder="输入任意答案">
+            <input type="text" id="password-input-2" class="password-input" placeholder="格式：YYYYMMDD">
             <button class="password-btn" onclick="checkPassword2()">确认</button>
-            <p id="password-success-2" class="password-success"></p>
+            <div id="password-success-area-2" class="password-success-area" style="display: none;">
+                <p class="password-success-text">正确！（嘿嘿，其实我也忘了是哪一天，你过生日什么都听你哒，不管你输入什么都正确哦）</p>
+                <button class="password-btn enter-btn" onclick="enterWebsite()">进入网站 →</button>
+            </div>
         </div>
     </div>
 
@@ -153,14 +156,13 @@
             <div class="envelope-container" onclick="openLetter()">
                 <div class="envelope">
                     <div class="envelope-flap"></div>
-                    <div class="envelope-body">
-                        <div class="envelope-seal">
-                            <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=purple%20wisteria%20flowers%20cluster%20isolated%20on%20transparent%20background%20watercolor%20style&image_size=square" alt="紫藤萝" class="wisteria-image">
-                        </div>
-                    </div>
+                    <div class="envelope-body"></div>
                     <div class="envelope-inner">
                         <p class="letter-preview">点击打开...</p>
                     </div>
+                </div>
+                <div class="envelope-seal">
+                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=purple%20wisteria%20flowers%20cluster%20isolated%20on%20transparent%20background%20watercolor%20style&image_size=square" alt="紫藤萝" class="wisteria-image">
                 </div>
             </div>
         </div>
