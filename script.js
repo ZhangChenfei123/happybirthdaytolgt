@@ -11,6 +11,13 @@ window.addEventListener('load', function() {
         }, 500);
     }, 2000);
     createPetals();
+    
+    const parallelLink = document.querySelector('a[href="#parallel"]');
+    if (parallelLink) {
+        parallelLink.style.display = 'none';
+    }
+    
+    
 });
 
 function checkPassword1() {
@@ -77,6 +84,48 @@ function toggleBGM() {
     isBGMPlaying = !isBGMPlaying;
 }
 
+// 背景音乐与其他媒体协调：播放视频/音频时暂停BGM，停止后从原位置继续
+(function setupBgmCoordination() {
+    let bgmWasPlaying = false;
+
+    function isAnyMediaPlaying() {
+        const mediaElements = document.querySelectorAll('video, audio');
+        for (let m of mediaElements) {
+            if (m.id !== 'bgm' && !m.paused) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    document.addEventListener('play', function(e) {
+        if (e.target.id === 'bgm') return;
+        const bgm = document.getElementById('bgm');
+        if (isBGMPlaying && !bgm.paused) {
+            bgmWasPlaying = true;
+            bgm.pause();
+        }
+    }, true);
+
+    function tryResumeBgm() {
+        if (bgmWasPlaying && !isAnyMediaPlaying()) {
+            bgmWasPlaying = false;
+            const bgm = document.getElementById('bgm');
+            bgm.play().catch(function() {});
+        }
+    }
+
+    document.addEventListener('pause', function(e) {
+        if (e.target.id === 'bgm') return;
+        setTimeout(tryResumeBgm, 100);
+    }, true);
+
+    document.addEventListener('ended', function(e) {
+        if (e.target.id === 'bgm') return;
+        setTimeout(tryResumeBgm, 100);
+    }, true);
+})();
+
 function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
 }
@@ -84,36 +133,128 @@ function scrollToSection(sectionId) {
 const memories = [
     {
         title: '[回忆标题1]',
-        description: '[详细描述1]',
-        icon: '🐱'
+        description: '那你呢，可以在家陪我吗？别流浪了呗',
+        icon: '🐱',
+        video: '猫狗.mp4'
     },
     {
         title: '[回忆标题2]',
-        description: '[详细描述2]',
-        icon: '🐶'
+        description: '别忘了你还欠我3面！！！',
+        icon: '🐶',
+        video: null,
+        images: [
+            '微信图片_20260728115156_129_1.jpg',
+            '微信图片_20260728115157_130_1.jpg'
+        ]
     },
     {
         title: '[回忆标题3]',
-        description: '[详细描述3]',
-        icon: '🎂'
+        description: '文元壬同学，肉干吃完了，还想要，嘻嘻（哦不对，是你的生日......那么你想要什么礼物呢？）',
+        icon: '🎁',
+        video: null,
+        images: [
+            '微信图片_20260730115010_143_1.jpg',
+            '微信图片_20260730115010_142_1.jpg'
+        ]
     },
     {
         title: '[回忆标题4]',
-        description: '[详细描述4]',
-        icon: '🎈'
+        description: 'I see sparks fly~',
+        icon: '✨🎇✨',
+        video: '烟花.mp4'
+    },
+    {
+        title: '[回忆标题5]',
+        description: '紫藤萝的约定，华池先森可别放紫港小姐的鸽子哦',
+        icon: '💜',
+        video: null,
+        images: [
+            '微信图片_20260730114747_141_1.jpg'
+        ]
+    },
+    {
+        title: '[回忆标题6]',
+        description: '抱抱"连伤感都是奢侈的"的坏狗同学，但在我这里，你永远可以做小孩子~（虽然我也是小孩子）',
+        icon: '🌟',
+        video: null,
+        images: [
+            '微信图片_20260728130548_132_1.jpg',
+            '微信图片_20260728130549_133_1.jpg',
+            '微信图片_20260728130549_134_1.jpg'
+        ]
     }
 ];
 
 function showMemoryDetail(index) {
     const memory = memories[index];
-    document.getElementById('modal-image').innerHTML = '<span class="placeholder-icon">' + memory.icon + '</span>';
-    document.getElementById('modal-title').textContent = memory.title;
+    const modalImage = document.getElementById('modal-image');
+    const modalContent = document.querySelector('.modal-content');
+    const modalChat = document.getElementById('modal-chat');
+    
+    if (modalChat) {
+        modalChat.style.display = 'none';
+    }
+    
+    if (memory.video) {
+        modalImage.innerHTML = `
+            <video class="modal-video" controls autoplay>
+                <source src="${memory.video}" type="video/mp4">
+                您的浏览器不支持视频播放
+            
+        `;
+    } else if (memory.images && memory.images.length > 0) {
+        let imagesHtml = '<div class="modal-images">';
+        memory.images.forEach((imgUrl, i) => {
+            imagesHtml += `<img src="${imgUrl}" alt="回忆图片${i+1}" class="modal-img">`;
+        });
+        imagesHtml += '</div>';
+        modalImage.innerHTML = imagesHtml;
+    } else if (memory.chat && memory.chat.length > 0) {
+        let chatImagesHtml = '';
+        if (memory.chatImages && memory.chatImages.length > 0) {
+            chatImagesHtml = '<div class="modal-images">';
+            memory.chatImages.forEach((imgUrl, i) => {
+                chatImagesHtml += `<img src="${imgUrl}" alt="聊天图片${i+1}" class="modal-img">`;
+            });
+            chatImagesHtml += '</div>';
+        }
+        modalImage.innerHTML = chatImagesHtml;
+        
+        if (!modalChat) {
+            const chatDiv = document.createElement('div');
+            chatDiv.id = 'modal-chat';
+            chatDiv.className = 'modal-chat';
+            modalContent.appendChild(chatDiv);
+        }
+        
+        const chatContainer = document.getElementById('modal-chat');
+        let chatHtml = '';
+        memory.chat.forEach(msg => {
+            const isCat = msg.sender === 'cat';
+            chatHtml += `
+                <div class="chat-message ${isCat ? 'cat-message' : 'dog-message'}">
+                    <div class="chat-bubble">${msg.text}</div>
+                </div>
+            `;
+        });
+        chatContainer.innerHTML = chatHtml;
+        chatContainer.style.display = 'block';
+    } else {
+        modalImage.innerHTML = '<span class="placeholder-icon">' + memory.icon + '</span>';
+    }
+    
+    document.getElementById('modal-title').textContent = '';
     document.getElementById('modal-description').textContent = memory.description;
     document.getElementById('memory-modal').style.display = 'flex';
 }
 
 function closeModal() {
-    document.getElementById('memory-modal').style.display = 'none';
+    const modal = document.getElementById('memory-modal');
+    const modalChat = document.getElementById('modal-chat');
+    if (modalChat) {
+        modalChat.remove();
+    }
+    modal.style.display = 'none';
 }
 
 window.addEventListener('click', function(event) {
@@ -177,7 +318,11 @@ const catSurprises = [
     '🐱 坏狗同学，生日快乐！',
     '🐱 永远是你的坏猫老师~',
     '🐱 今天也要开心哦！',
-    '🐱 喵~最最最喜欢你！'
+    '🐱 喵~最最最喜欢你！',
+    '🐱 多闻阙疑，慎言其余，则寡尤；多见阙殆，慎行其余，则寡悔。',
+    '🐱 君子之交淡如水',
+    '🐱 不用（真心）或许不会输，但永远不会赢',
+    '🐱 教学相长'
 ];
 
 function triggerSurprise() {
@@ -201,6 +346,22 @@ function triggerSurprise() {
     
     createParticles('cat');
 }
+
+// 彩蛋音频连续播放：先"指弹"再"弹唱"
+(function setupSurpriseAudioPlaylist() {
+    const audio = document.getElementById('surprise-audio');
+    if (!audio) return;
+
+    let playedFirst = false;
+
+    audio.addEventListener('ended', function() {
+        if (!playedFirst) {
+            playedFirst = true;
+            audio.src = '弹唱.m4a';
+            audio.play();
+        }
+    });
+})();
 
 function createParticles(type) {
     const container = document.querySelector('.surprise-container');
@@ -233,6 +394,65 @@ function createParticles(type) {
             particle.remove();
         };
     }
+}
+
+function openGalaxyVideo(videoUrl) {
+    const modalImage = document.getElementById('modal-image');
+    modalImage.innerHTML = `
+        <video class="modal-video" controls autoplay>
+            <source src="${videoUrl}" type="video/mp4">
+            您的浏览器不支持视频播放
+        
+    `;
+    document.getElementById('modal-title').textContent = videoUrl === '小时候.mp4' ? '小时候的我们' : '湖边的我们';
+    document.getElementById('modal-description').textContent = '';
+    document.getElementById('memory-modal').style.display = 'flex';
+}
+
+function revealSurprise() {
+    const blockedOverlay = document.getElementById('blocked-overlay');
+    const blockedContent = blockedOverlay.querySelector('.blocked-content');
+    const surpriseStart = document.getElementById('surprise-start');
+    const surpriseContent = document.getElementById('surprise-content');
+    
+    blockedOverlay.style.display = 'flex';
+    
+    setTimeout(function() {
+        blockedOverlay.style.background = '#ffffff';
+        blockedContent.style.background = '#ffffff';
+        blockedContent.style.padding = '0';
+        blockedContent.style.maxWidth = '100%';
+        blockedContent.style.width = '100%';
+        blockedContent.style.height = '100%';
+        blockedContent.style.display = 'flex';
+        blockedContent.style.justifyContent = 'center';
+        blockedContent.style.alignItems = 'center';
+        blockedContent.innerHTML = `
+            <h2 class="blocked-prank">嘻嘻<br>逗你的<br>略略略</h2>
+        `;
+    }, 7500);
+    
+    setTimeout(function() {
+        blockedOverlay.style.background = '';
+        blockedOverlay.style.display = 'none';
+        blockedContent.style.background = '';
+        blockedContent.style.padding = '';
+        blockedContent.style.maxWidth = '';
+        blockedContent.style.width = '';
+        blockedContent.style.height = '';
+        blockedContent.style.display = '';
+        blockedContent.style.justifyContent = '';
+        blockedContent.style.alignItems = '';
+        surpriseStart.style.display = 'none';
+        surpriseContent.style.display = 'block';
+        
+        document.getElementById('parallel').style.display = 'block';
+        
+        const parallelLink = document.querySelector('a[href="#parallel"]');
+        if (parallelLink) {
+            parallelLink.style.display = 'block';
+        }
+    }, 11000);
 }
 
 document.querySelectorAll('.nav-links a').forEach(link => {

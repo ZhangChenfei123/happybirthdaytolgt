@@ -47,6 +47,7 @@
             <li><a href="#memories">回忆相册</a></li>
             <li><a href="#letter">一封信</a></li>
             <li><a href="#surprise">彩蛋惊喜</a></li>
+                <li><a href="#parallel">平行时空</a></li>
         </ul>
         <div class="backpack" id="backpack">
             <span class="backpack-icon">🎒</span>
@@ -69,7 +70,7 @@
             <audio id="bgm" loop preload="auto">
                 <source src="music/enchanted.mp3" type="audio/mpeg">
                 您的浏览器不支持音频播放
-            
+            </audio>
         </div>
         <div class="floating-elements">
             <div class="float-item">🎁</div>
@@ -82,25 +83,9 @@
     </section>
 
     <section id="message" class="message-section">
-        <div class="container">
-            <h2 class="section-title">� 一路走来</h2>
-            <div class="milestone-grid">
-                <div class="milestone-card">
-                    <div class="milestone-icon">�</div>
-                    <div class="milestone-number" id="days-count">[认识天数]</div>
-                    <div class="milestone-label">认识的天数</div>
-                </div>
-                <div class="milestone-card">
-                    <div class="milestone-icon">💬</div>
-                    <div class="milestone-number" id="messages-count">[消息数量]</div>
-                    <div class="milestone-label">发消息的数量</div>
-                </div>
-                <div class="milestone-card">
-                    <div class="milestone-icon">👥</div>
-                    <div class="milestone-number" id="meetings-count">[见面次数]</div>
-                    <div class="milestone-label">见面次数</div>
-                </div>
-            </div>
+        <div class="disclaimer-content">
+            <p>先叠个甲：真心拉满，技术不详 <span class="emoji">🐶</span></p>
+            <p>水平有限（我是说trae <span class="emoji">😤</span>），还请见谅。</p>
         </div>
         <div class="hidden-cake" id="cake-2" onclick="collectCake(2)">🍰</div>
     </section>
@@ -111,11 +96,9 @@
             <div class="memories-grid">
                 <div class="memory-card" onclick="showMemoryDetail(0)">
                     <div class="memory-image">
-                        <span class="placeholder-icon">🐱</span>
+                        <span class="cover-icon">🐱</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题1]</h3>
-                        <p>[回忆描述1]</p>
                     </div>
                 </div>
                 <div class="memory-card" onclick="showMemoryDetail(1)">
@@ -123,8 +106,6 @@
                         <span class="placeholder-icon">🐶</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题2]</h3>
-                        <p>[回忆描述2]</p>
                     </div>
                 </div>
                 <div class="memory-card" onclick="showMemoryDetail(2)">
@@ -132,17 +113,13 @@
                         <span class="placeholder-icon">🎂</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题3]</h3>
-                        <p>[回忆描述3]</p>
                     </div>
                 </div>
                 <div class="memory-card" onclick="showMemoryDetail(3)">
                     <div class="memory-image">
-                        <span class="placeholder-icon">�</span>
+                        <span class="cover-icon" style="font-size: 2.5rem;">✨🎇✨</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题4]</h3>
-                        <p>[回忆描述4]</p>
                     </div>
                 </div>
                 <div class="memory-card" onclick="showMemoryDetail(4)">
@@ -150,8 +127,6 @@
                         <span class="placeholder-icon">💜</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题5]</h3>
-                        <p>[回忆描述5]</p>
                     </div>
                 </div>
                 <div class="memory-card" onclick="showMemoryDetail(5)">
@@ -159,8 +134,6 @@
                         <span class="placeholder-icon">🌟</span>
                     </div>
                     <div class="memory-info">
-                        <h3>[回忆标题6]</h3>
-                        <p>[回忆描述6]</p>
                     </div>
                 </div>
             </div>
@@ -180,7 +153,38 @@
                     </div>
                 </div>
                 <div class="envelope-seal">
-                    <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=round%20circle%20purple%20wisteria%20flowers%20wreath%20isolated%20on%20transparent%20background%20watercolor%20style%20minimal&image_size=square" alt="紫藤萝" class="wisteria-image">
+                    <svg class="wisteria-image" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="wisteriaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#9B59B6;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#DDA0DD;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <g transform="translate(50, 50)">
+                            <ellipse cx="0" cy="0" rx="35" ry="35" fill="none" stroke="#9B59B6" stroke-width="1" opacity="0.3"/>
+                            <path d="M0,-30 Q5,-25 0,-20 Q-5,-15 0,-10 Q5,-5 0,0 Q-5,5 0,10 Q5,15 0,20" stroke="#8B4513" stroke-width="1.5" fill="none"/>
+                            <ellipse cx="0" cy="-30" rx="6" ry="4" fill="url(#wisteriaGrad)" transform="rotate(-30)"/>
+                            <ellipse cx="0" cy="-20" rx="7" ry="4.5" fill="url(#wisteriaGrad)" transform="rotate(-15)"/>
+                            <ellipse cx="0" cy="-10" rx="6" ry="4" fill="url(#wisteriaGrad)" transform="rotate(-5)"/>
+                            <ellipse cx="0" cy="0" rx="7" ry="4.5" fill="url(#wisteriaGrad)" transform="rotate(5)"/>
+                            <ellipse cx="0" cy="10" rx="6" ry="4" fill="url(#wisteriaGrad)" transform="rotate(15)"/>
+                            <ellipse cx="0" cy="20" rx="5" ry="3" fill="url(#wisteriaGrad)" transform="rotate(25)"/>
+                            <ellipse cx="-8" cy="-22" rx="5" ry="3.5" fill="url(#wisteriaGrad)" transform="rotate(-45)"/>
+                            <ellipse cx="-6" cy="-12" rx="4" ry="3" fill="url(#wisteriaGrad)" transform="rotate(-35)"/>
+                            <ellipse cx="-5" cy="-2" rx="5" ry="3.5" fill="url(#wisteriaGrad)" transform="rotate(-25)"/>
+                            <ellipse cx="-6" cy="8" rx="4" ry="3" fill="url(#wisteriaGrad)" transform="rotate(-15)"/>
+                            <ellipse cx="-7" cy="18" rx="4" ry="2.5" fill="url(#wisteriaGrad)" transform="rotate(-5)"/>
+                            <ellipse cx="8" cy="-22" rx="5" ry="3.5" fill="url(#wisteriaGrad)" transform="rotate(45)"/>
+                            <ellipse cx="6" cy="-12" rx="4" ry="3" fill="url(#wisteriaGrad)" transform="rotate(35)"/>
+                            <ellipse cx="5" cy="-2" rx="5" ry="3.5" fill="url(#wisteriaGrad)" transform="rotate(25)"/>
+                            <ellipse cx="6" cy="8" rx="4" ry="3" fill="url(#wisteriaGrad)" transform="rotate(15)"/>
+                            <ellipse cx="7" cy="18" rx="4" ry="2.5" fill="url(#wisteriaGrad)" transform="rotate(5)"/>
+                            <circle cx="-15" cy="-15" r="1.5" fill="#9B59B6"/>
+                            <circle cx="15" cy="-15" r="1.5" fill="#9B59B6"/>
+                            <circle cx="-12" cy="12" r="1" fill="#DDA0DD"/>
+                            <circle cx="12" cy="12" r="1" fill="#DDA0DD"/>
+                        </g>
+                    </svg>
                 </div>
             </div>
         </div>
@@ -196,21 +200,52 @@
                     <p>快去其他页面找找隐藏的小蛋糕吧！</p>
                 </div>
                 <div id="surprise-unlocked" class="surprise-unlocked" style="display: none;">
-                    <div class="surprise-audio">
-                        <audio controls id="surprise-audio">
-                            <source src="[彩蛋音频文件路径]" type="audio/mpeg">
-                            您的浏览器不支持音频播放
-                        
+                    <div id="surprise-start" class="surprise-start">
+                        <button class="surprise-reveal-btn" onclick="revealSurprise()">🎁 点击查看彩蛋</button>
                     </div>
-                    <div class="big-paw-container">
-                        <button class="big-paw-btn" onclick="triggerSurprise()">🐾</button>
+                    <div id="surprise-content" class="surprise-content" style="display: none;">
+                        <div class="surprise-audio">
+                            <p class="audio-label">🎵 一首生日快乐歌，聊表心意</p>
+                            <audio controls id="surprise-audio">
+                                <source src="指弹.m4a" type="audio/mp4">
+                                您的浏览器不支持音频播放
+                            </audio>
+                        </div>
+                        <div class="big-paw-container">
+                            <button class="big-paw-btn" onclick="triggerSurprise()">🐾</button>
+                        </div>
+                        <p class="surprise-hint">点击大猫爪，听听猫猫想说什么！</p>
+                        <div id="surprise-result"></div>
                     </div>
-                    <p class="surprise-hint">点击大猫爪，听听猫猫想说什么！</p>
-                    <div id="surprise-result"></div>
                 </div>
             </div>
         </div>
         <div class="hidden-cake" id="cake-5" onclick="collectCake(5)">🍰</div>
+    </section>
+
+    <section id="parallel" class="parallel-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">🌌 平行时空</h2>
+            <p class="parallel-intro">嘿，想不想看一看平行时空的我们</p>
+            <div class="galaxy-grid">
+                <div class="galaxy-card" onclick="openGalaxyVideo('小时候.mp4')">
+                    <div class="galaxy-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=beautiful%20spiral%20galaxy%20with%20stars%20and%20nebula%20in%20deep%20space%20cosmic%20background&image_size=square_hd" alt="银河系1">
+                        <div class="galaxy-overlay">
+                            <span class="galaxy-play">▶️</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="galaxy-card" onclick="openGalaxyVideo('湖边.mp4')">
+                    <div class="galaxy-image">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=colorful%20milky%20way%20galaxy%20with%20purple%20and%20blue%20nebula%20deep%20space%20astrophotography&image_size=square_hd" alt="银河系2">
+                        <div class="galaxy-overlay">
+                            <span class="galaxy-play">▶️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="footer">
@@ -230,6 +265,28 @@
             </div>
             <h3 id="modal-title">[回忆标题]</h3>
             <p id="modal-description">[详细描述]</p>
+        </div>
+    </div>
+
+    <div id="blocked-overlay" class="blocked-overlay" style="display: none;">
+        <div class="blocked-content">
+            <div class="blocked-icon">
+                <div class="blocked-circle">
+                    <span class="blocked-x">✕</span>
+                </div>
+            </div>
+            <h2 class="blocked-title">Sorry, you have been blocked</h2>
+            <p class="blocked-subtitle">You are unable to access trae.site</p>
+            <div class="blocked-divider"></div>
+            <h3 class="blocked-section-title">Why have I been blocked?</h3>
+            <p class="blocked-text">This website is using a security service to protect itself from online attacks. The action you just performed triggered the security solution. There are several actions that could trigger this block including submitting a certain word or phrase, a SQL command or malformed data.</p>
+            <h3 class="blocked-section-title">What can I do to resolve this?</h3>
+            <p class="blocked-text">You can email the site owner to let them know you were blocked. Please include what you were doing when this page came up and the Cloudflare Ray ID found at the bottom of this page.</p>
+            <div class="blocked-footer">
+                <p>Cloudflare Ray ID: a206ed553ea570f0</p>
+                <p>Your IP: Click to reveal</p>
+                <p>Performance & security by Cloudflare</p>
+            </div>
         </div>
     </div>
 
