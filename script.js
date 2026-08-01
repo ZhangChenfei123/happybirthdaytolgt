@@ -159,7 +159,7 @@ const memories = [
     },
     {
         title: '[回忆标题4]',
-        description: 'I see sparks fly~',
+        description: 'I see sparks fly~\n等不到天黑，烟火不会太完美~',
         icon: '✨🎇✨',
         video: '烟花.mp4'
     },
@@ -254,6 +254,12 @@ function closeModal() {
     if (modalChat) {
         modalChat.remove();
     }
+    // 停止并重置所有模态框中的视频，下次点开从头播放
+    const videos = modal.querySelectorAll('video');
+    videos.forEach(function(v) {
+        v.pause();
+        v.currentTime = 0;
+    });
     modal.style.display = 'none';
 }
 
