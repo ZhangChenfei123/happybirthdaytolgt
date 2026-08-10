@@ -9,15 +9,7 @@ let videoLoadingOverlay = null;
 
 function preloadVideos() {
     VIDEO_FILES.forEach(function(src) {
-        const pre = document.createElement('video');
-        pre.preload = 'auto';
-        pre.muted = true;
-        pre.playsInline = true;
-        pre.style.display = 'none';
-        pre.style.visibility = 'hidden';
-        pre.src = src;
-        pre.load();
-        document.body.appendChild(pre);
+        fetch(src, { mode: 'no-cors' }).catch(function() {});
     });
 }
 
