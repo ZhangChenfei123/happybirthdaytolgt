@@ -49,8 +49,6 @@ function hideVideoModal() {
     if (persistentVideo) {
         persistentVideo.pause();
         persistentVideo.currentTime = 0;
-        persistentVideo.removeAttribute('src');
-        persistentVideo.load();
         persistentVideo.style.opacity = '1';
     }
     if (videoContainer) {
