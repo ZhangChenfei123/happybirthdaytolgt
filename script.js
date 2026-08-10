@@ -2,6 +2,70 @@ let collectedCakes = [];
 const totalCakes = 5;
 let isBGMPlaying = false;
 
+const VIDEO_FILES = ['猫狗.mp4', '烟花.mp4', '小时候.mp4', '湖边.mp4'];
+let persistentVideo = null;
+let videoContainer = null;
+let videoLoadingOverlay = null;
+
+function preloadVideos() {
+    VIDEO_FILES.forEach(function(src) {
+        const pre = document.createElement('video');
+        pre.preload = 'auto';
+        pre.muted = true;
+        pre.playsInline = true;
+        pre.style.display = 'none';
+        pre.style.visibility = 'hidden';
+        pre.src = src;
+        pre.load();
+        document.body.appendChild(pre);
+    });
+}
+
+function initPersistentVideo() {
+    persistentVideo = document.getElementById('persistent-video');
+    videoContainer = document.getElementById('modal-video-container');
+    videoLoadingOverlay = videoContainer.querySelector('.video-loading-overlay');
+    persistentVideo.addEventListener('waiting', function() {
+        videoLoadingOverlay.style.display = 'flex';
+    });
+    persistentVideo.addEventListener('canplaythrough', function() {
+        videoLoadingOverlay.style.display = 'none';
+    });
+    persistentVideo.addEventListener('playing', function() {
+        videoLoadingOverlay.style.display = 'none';
+    });
+}
+
+function showVideoModal(videoSrc) {
+    const modalImage = document.getElementById('modal-image');
+    const chatDiv = document.getElementById('modal-chat');
+    if (chatDiv) chatDiv.remove();
+
+    modalImage.style.display = 'none';
+    videoContainer.style.display = 'block';
+    videoLoadingOverlay.style.display = 'flex';
+
+    persistentVideo.src = videoSrc;
+    persistentVideo.currentTime = 0;
+    persistentVideo.load();
+    persistentVideo.play().catch(function() {});
+}
+
+function hideVideoModal() {
+    if (persistentVideo) {
+        persistentVideo.pause();
+        persistentVideo.currentTime = 0;
+        persistentVideo.removeAttribute('src');
+        persistentVideo.load();
+    }
+    if (videoContainer) {
+        videoContainer.style.display = 'none';
+        videoLoadingOverlay.style.display = 'none';
+    }
+    const modalImage = document.getElementById('modal-image');
+    if (modalImage) modalImage.style.display = 'flex';
+}
+
 window.addEventListener('load', function() {
     setTimeout(function() {
         document.getElementById('loading-screen').style.opacity = '0';
@@ -16,6 +80,10 @@ window.addEventListener('load', function() {
     if (parallelLink) {
         parallelLink.style.display = 'none';
     }
+    
+    initPersistentVideo();
+    
+    setTimeout(preloadVideos, 500);
     
     
 });
@@ -188,20 +256,16 @@ const memories = [
 function showMemoryDetail(index) {
     const memory = memories[index];
     const modalImage = document.getElementById('modal-image');
-    const modalContent = document.querySelector('.modal-content');
     const modalChat = document.getElementById('modal-chat');
     
     if (modalChat) {
         modalChat.style.display = 'none';
     }
+
+    hideVideoModal();
     
     if (memory.video) {
-        modalImage.innerHTML = `
-            <video class="modal-video" controls autoplay>
-                <source src="${memory.video}" type="video/mp4">
-                您的浏览器不支持视频播放
-            
-        `;
+        showVideoModal(memory.video);
     } else if (memory.images && memory.images.length > 0) {
         let imagesHtml = '<div class="modal-images">';
         memory.images.forEach((imgUrl, i) => {
@@ -209,6 +273,7 @@ function showMemoryDetail(index) {
         });
         imagesHtml += '</div>';
         modalImage.innerHTML = imagesHtml;
+        modalImage.style.display = 'flex';
     } else if (memory.chat && memory.chat.length > 0) {
         let chatImagesHtml = '';
         if (memory.chatImages && memory.chatImages.length > 0) {
@@ -224,7 +289,7 @@ function showMemoryDetail(index) {
             const chatDiv = document.createElement('div');
             chatDiv.id = 'modal-chat';
             chatDiv.className = 'modal-chat';
-            modalContent.appendChild(chatDiv);
+            document.querySelector('.modal-content').appendChild(chatDiv);
         }
         
         const chatContainer = document.getElementById('modal-chat');
@@ -239,8 +304,10 @@ function showMemoryDetail(index) {
         });
         chatContainer.innerHTML = chatHtml;
         chatContainer.style.display = 'block';
+        modalImage.style.display = 'flex';
     } else {
         modalImage.innerHTML = '<span class="placeholder-icon">' + memory.icon + '</span>';
+        modalImage.style.display = 'flex';
     }
     
     document.getElementById('modal-title').textContent = '';
@@ -250,16 +317,11 @@ function showMemoryDetail(index) {
 
 function closeModal() {
     const modal = document.getElementById('memory-modal');
+    hideVideoModal();
     const modalChat = document.getElementById('modal-chat');
     if (modalChat) {
         modalChat.remove();
     }
-    // 停止并重置所有模态框中的视频，下次点开从头播放
-    const videos = modal.querySelectorAll('video');
-    videos.forEach(function(v) {
-        v.pause();
-        v.currentTime = 0;
-    });
     modal.style.display = 'none';
 }
 
@@ -403,13 +465,8 @@ function createParticles(type) {
 }
 
 function openGalaxyVideo(videoUrl) {
-    const modalImage = document.getElementById('modal-image');
-    modalImage.innerHTML = `
-        <video class="modal-video" controls autoplay>
-            <source src="${videoUrl}" type="video/mp4">
-            您的浏览器不支持视频播放
-        
-    `;
+    hideVideoModal();
+    showVideoModal(videoUrl);
     document.getElementById('modal-title').textContent = videoUrl === '小时候.mp4' ? '小时候的我们' : '湖边的我们';
     document.getElementById('modal-description').textContent = '';
     document.getElementById('memory-modal').style.display = 'flex';

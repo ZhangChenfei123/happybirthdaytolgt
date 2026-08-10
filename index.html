@@ -263,6 +263,13 @@
             <div id="modal-image">
                 <span class="placeholder-icon">📷</span>
             </div>
+            <div id="modal-video-container" class="modal-video-container" style="display:none">
+                <div class="video-loading-overlay">
+                    <div class="loading-spinner"></div>
+                    <span class="loading-text">加载中...</span>
+                </div>
+                <video id="persistent-video" class="modal-video" controls preload="auto"></video>
+            </div>
             <h3 id="modal-title">[回忆标题]</h3>
             <p id="modal-description">[详细描述]</p>
         </div>
