@@ -8,51 +8,6 @@ let videoContainer = null;
 let videoLoadingOverlay = null;
 
 function preloadVideos() {
-    const tempVideo = document.createElement('video');
-    tempVideo.preload = 'auto';
-    tempVideo.muted = true;
-    tempVideo.playsInline = true;
-    tempVideo.style.display = 'none';
-    document.body.appendChild(tempVideo);
-
-    let idx = 0;
-    function preloadNext() {
-        if (idx >= VIDEO_FILES.length) {
-            if (tempVideo.parentNode) tempVideo.parentNode.removeChild(tempVideo);
-            return;
-        }
-        const src = VIDEO_FILES[idx];
-        tempVideo.src = src;
-        tempVideo.load();
-        const onReady = function() {
-            cleanup();
-            tempVideo.pause();
-            tempVideo.currentTime = 0;
-            tempVideo.removeAttribute('src');
-            tempVideo.load();
-            idx++;
-            setTimeout(preloadNext, 100);
-        };
-        const onError = function() {
-            cleanup();
-            idx++;
-            setTimeout(preloadNext, 100);
-        };
-        const cleanup = function() {
-            tempVideo.removeEventListener('canplaythrough', onReady);
-            tempVideo.removeEventListener('playing', onReady);
-            tempVideo.removeEventListener('error', onError);
-        };
-        tempVideo.addEventListener('canplaythrough', onReady);
-        tempVideo.addEventListener('playing', onReady);
-        tempVideo.addEventListener('error', onError);
-        setTimeout(function() {
-            cleanup();
-            idx++;
-            setTimeout(preloadNext, 100);
-        }, 15000);
-    }
-    preloadNext();
 }
 
 function initPersistentVideo() {
