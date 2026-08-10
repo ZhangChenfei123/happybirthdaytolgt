@@ -9,7 +9,7 @@ let videoLoadingOverlay = null;
 
 function preloadVideos() {
     VIDEO_FILES.forEach(function(src) {
-        fetch(src, { mode: 'no-cors' }).catch(function() {});
+        fetch(src).catch(function() {});
     });
 }
 
