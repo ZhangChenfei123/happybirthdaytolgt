@@ -924,6 +924,9 @@ body {
 
 .modal-video-container .modal-video {
     display: block;
+    border-radius: 12px;
+    transition: opacity 0.3s ease-in;
+    background: #000;
 }
 
 .video-loading-overlay {

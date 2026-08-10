@@ -67,6 +67,8 @@ function initPersistentVideo() {
     });
     persistentVideo.addEventListener('playing', function() {
         videoLoadingOverlay.style.display = 'none';
+        persistentVideo.style.transition = 'opacity 0.3s ease-in';
+        persistentVideo.style.opacity = '1';
     });
 }
 
@@ -79,8 +81,11 @@ function showVideoModal(videoSrc) {
     videoContainer.style.display = 'block';
     videoLoadingOverlay.style.display = 'flex';
 
+    const posterSrc = videoSrc.replace('.mp4', '.jpg');
+    persistentVideo.poster = posterSrc;
     persistentVideo.src = videoSrc;
     persistentVideo.currentTime = 0;
+    persistentVideo.style.opacity = '0';
     persistentVideo.load();
     persistentVideo.play().catch(function() {});
 }
@@ -91,6 +96,7 @@ function hideVideoModal() {
         persistentVideo.currentTime = 0;
         persistentVideo.removeAttribute('src');
         persistentVideo.load();
+        persistentVideo.style.opacity = '1';
     }
     if (videoContainer) {
         videoContainer.style.display = 'none';
