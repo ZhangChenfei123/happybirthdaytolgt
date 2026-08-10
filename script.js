@@ -6,10 +6,16 @@ const VIDEO_FILES = ['猫狗.mp4', '烟花.mp4', '小时候.mp4', '湖边.mp4'];
 let persistentVideo = null;
 let videoContainer = null;
 let videoLoadingOverlay = null;
+const videoBlobCache = {};
 
 function preloadVideos() {
     VIDEO_FILES.forEach(function(src) {
-        fetch(src).catch(function() {});
+        fetch(src)
+            .then(function(response) { return response.blob(); })
+            .then(function(blob) {
+                videoBlobCache[src] = URL.createObjectURL(blob);
+            })
+            .catch(function() {});
     });
 }
 
@@ -37,7 +43,8 @@ function showVideoModal(videoSrc) {
     videoContainer.style.display = 'block';
     videoLoadingOverlay.style.display = 'flex';
 
-    persistentVideo.src = videoSrc;
+    const srcToUse = videoBlobCache[videoSrc] || videoSrc;
+    persistentVideo.src = srcToUse;
     persistentVideo.currentTime = 0;
     persistentVideo.load();
     persistentVideo.play().catch(function() {});
