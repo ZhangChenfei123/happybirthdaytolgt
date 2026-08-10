@@ -418,7 +418,7 @@ function triggerSurprise() {
     audio.addEventListener('ended', function() {
         if (!playedFirst) {
             playedFirst = true;
-            audio.src = '弹唱.m4a';
+            audio.src = '弹唱.mp3';
             audio.play();
         }
     });
