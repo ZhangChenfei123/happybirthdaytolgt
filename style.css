@@ -575,7 +575,7 @@ body {
 }
 
 .letter-header {
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .wisteria-decoration {
@@ -586,33 +586,35 @@ body {
     margin: 0.5rem;
 }
 
-.letter-title {
-    font-family: 'Ma Shan Zheng', cursive;
-    font-size: 2.5rem;
-    color: #8B5CF6;
-    margin: 1rem 0;
-}
-
 .letter-body {
     text-align: left;
     margin-bottom: 2rem;
 }
 
-.letter-text {
+.letter-body p {
     font-size: 1.2rem;
     line-height: 2;
     color: var(--text-color);
     font-family: 'ZCOOL KuaiLe', cursive;
+    text-indent: 2em;
+    margin: 0 0 1.2rem 0;
+}
+
+.letter-body .letter-salutation {
+    text-indent: 0;
+    margin-bottom: 1.5rem;
 }
 
 .letter-footer {
     text-align: right;
-    color: #888;
-    font-size: 1rem;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    font-family: 'ZCOOL KuaiLe', cursive;
+    line-height: 1.9;
 }
 
 .letter-footer p {
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
 }
 
 .surprise-section {
